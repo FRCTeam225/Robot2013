@@ -15,9 +15,19 @@ public class LEDSet extends CommandBase {
     
     int color;
     
+    boolean turretLEDState = false;
+    boolean updateTurretLEDs = false;
+    
     public LEDSet(int color)
     {
         this.color = color;
+    }
+    
+    public LEDSet(int color, boolean ledsFiring)
+    {
+        this(color);
+        this.turretLEDState = ledsFiring;
+        this.updateTurretLEDs = true;
     }
     
     protected void initialize() {
@@ -25,6 +35,8 @@ public class LEDSet extends CommandBase {
             ledStrip.setRed();
         else if ( color == GREEN )
             ledStrip.setGreen();
+        if ( updateTurretLEDs )
+            turretLEDStrip.setTurretLEDState(turretLEDState);
     }
 
     protected void execute() {

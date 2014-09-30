@@ -4,7 +4,12 @@
  */
 package org.team225.robot2013.subsystems;
 
+import edu.wpi.first.wpilibj.DigitalModule;
+import edu.wpi.first.wpilibj.DigitalOutput;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.Relay;
+import org.team225.robot2013.RobotMap;
 
 /**
  *
@@ -12,6 +17,7 @@ import edu.wpi.first.wpilibj.Relay;
  */
 public class LEDStrip {
     Relay led = new Relay(8);
+    
     public LEDStrip()
     {
     }

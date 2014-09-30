@@ -32,11 +32,6 @@ public class AutoTurret extends CommandBase {
             setpoint -= Math.floor(offset);
         }
         
-        if ( setpoint <= 331  )
-            setpoint = 331;
-        else if ( setpoint >= 466  )
-            setpoint = 466;
-            
         turret.setTurretSetpoint(setpoint);
         */
     }

@@ -26,8 +26,8 @@ public class RightSideShootAndBackup extends CommandGroup {
     {
         addSequential(new SetFlywheel(0.017099, 0.007)); 
         addSequential(new SetAngle(true));
-        addSequential(new SetTurret(699));
-        addParallel(new HoldTurretAtSetpoint(699));
+        addSequential(new SetTurret(570));
+        addParallel(new HoldTurretAtSetpoint(570));
         addSequential(new WaitForTurret());
         
         addSequential(new LEDSet(LEDSet.GREEN));
@@ -39,7 +39,6 @@ public class RightSideShootAndBackup extends CommandGroup {
         addSequential(new SafeFeedFrisbee());
         addSequential(new WaitCommand(1.0));
         addSequential(new SafeFeedFrisbee());
-        addSequential(new WaitCommand(1.0));
         addSequential(new SafeFeedFrisbee());
         addSequential(new SafeFeedFrisbee());
         addSequential(new SafeFeedFrisbee());

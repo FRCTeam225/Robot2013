@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.team225.robot2013.RobotMap;
+import org.team225.robot2013.commands.CommandBase;
 
 
 /**
@@ -27,7 +28,6 @@ public class Feeder extends Subsystem implements Runnable {
     public Feeder()
     {
         watcherThread = new Thread(this);
-        //watcherThread.setPriority(Thread.NORM_PRIORITY+1);
         watcherThread.start();
         LiveWindow.addActuator("Feeder", "Motor", feedMotor);
         LiveWindow.addSensor("Feeder", "Home", home);
@@ -55,7 +55,7 @@ public class Feeder extends Subsystem implements Runnable {
     
     public void setMotorPower( boolean state ){
         
-        feedMotor.set((state?0.5:0.0));
+        feedMotor.set((state?1.0:0.0));
     }
     
     public void setReversedMotorPower( boolean state ){
@@ -85,11 +85,12 @@ public class Feeder extends Subsystem implements Runnable {
                     case 1:
                         t.reset();
                         t.start();
+                        CommandBase.turretLEDStrip.setTurretLEDState(true);
                         feederState = 2;
                         break;
                     case 2:
                         setMotorPower(true);
-                        if ( t.get() > 0.05 )
+                        if ( t.get() > 0.1 )
                             feederState = 3;
                         break;
                     case 3:
@@ -97,6 +98,7 @@ public class Feeder extends Subsystem implements Runnable {
                         {
                             setMotorPower(false);
                             feederState = 0;
+                            CommandBase.turretLEDStrip.setTurretLEDState(false);
                         }
                         break;
                 }

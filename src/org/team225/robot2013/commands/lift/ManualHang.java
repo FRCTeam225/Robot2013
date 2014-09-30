@@ -6,6 +6,8 @@ package org.team225.robot2013.commands.lift;
 
 import org.team225.robot2013.OI.OI;
 import org.team225.robot2013.commands.CommandBase;
+import org.team225.robot2013.subsystems.LEDStrip;
+import org.team225.robot2013.subsystems.TurretLEDStrip;
 
 /**
  *
@@ -22,17 +24,20 @@ public class ManualHang extends CommandBase {
     }
 
     protected void execute() {
-        boolean winchDown = (OI.jsL.getRawButton(10)||OI.jsR.getRawButton(10));
-        boolean winchUp = (OI.jsL.getRawButton(11)||OI.jsR.getRawButton(11))&&winchDown;
-
+        
+        boolean winchDown = (OI.js.getRawButton(1));
+        boolean winchUp = (OI.js.getRawButton(2))&&winchDown;
         if ( winchUp && winchDown )
+        {
             lift.setWinch(0.5);
+        }
         else if ( winchDown )
             lift.setWinch(-1.0);
         else
+        {
             lift.setWinch(0.0); 
+        }
     }
-
     protected boolean isFinished() {
         return false;
     }

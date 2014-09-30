@@ -14,10 +14,8 @@ public class FarShot3 extends CommandGroup {
     
     public FarShot3()
     {
-        // plastidip 0.0208
-        // ducktape 0.018
         addSequential(new SetAngle(false));
-        addSequential(new SetFlywheel(0.01539+(3*0.0001), 1));
-        addSequential(new HoldTurretAtSetpoint(807));
+        addSequential(new SetFlywheel(0.0154799, 1));
+        addSequential(new HoldTurretAtSetpoint(416));
     }
 }

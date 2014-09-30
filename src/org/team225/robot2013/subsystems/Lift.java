@@ -13,17 +13,11 @@ import org.team225.robot2013.commands.lift.ManualHang;
  */
 public class Lift extends Subsystem {
     Victor winchMotor = new Victor(RobotMap.HANGWINCH);
-    DigitalInput safetySwitch = new DigitalInput(RobotMap.WINCHLIMIT);
     public Lift()
     {
         LiveWindow.addActuator("Lift", "Winch", winchMotor);
-        LiveWindow.addSensor("Lift", "Limit", safetySwitch);
     }
 
-    public boolean onBar()
-    {
-        return safetySwitch.get();
-    }
     
     public void setWinch(double value)
     {

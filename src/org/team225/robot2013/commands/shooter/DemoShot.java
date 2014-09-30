@@ -10,11 +10,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  * @author Andrew
  */
-public class CloseShot extends CommandGroup {
-    public CloseShot()
+public class DemoShot extends CommandGroup {
+    public DemoShot()
     {
-        addSequential(new SetFlywheel(0.017099, 0.007));  // old 0.017099
-        addSequential(new SetAngle(true));
-        addSequential(new HoldTurretAtSetpoint(570));
+        addSequential(new SetFlywheel(0.032, 1));  // old 0.017099
+        addSequential(new SetAngle(false));
+        addSequential(new HoldTurretAtSetpoint(565));
     }
 }

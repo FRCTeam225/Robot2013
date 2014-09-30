@@ -1,12 +1,13 @@
 package org.team225.robot2013.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.team225.robot2013.RobotMap;
-import org.team225.robot2013.commands.drivetrain.JoystickDrive;
+import org.team225.robot2013.commands.drivetrain.CheesyDrive;
 
 /**
  *
@@ -14,7 +15,6 @@ import org.team225.robot2013.commands.drivetrain.JoystickDrive;
  */
 public class Drivetrain extends Subsystem {
 
-        
     Victor driveL1 = new Victor(RobotMap.LEFTDRIVE1);
     Victor driveL2 = new Victor(RobotMap.LEFTDRIVE2);
     Victor driveL3 = new Victor(RobotMap.LEFTDRIVE3);
@@ -23,9 +23,12 @@ public class Drivetrain extends Subsystem {
     Victor driveR2 = new Victor(RobotMap.RIGHTDRIVE2);
     Victor driveR3 = new Victor(RobotMap.RIGHTDRIVE3);
     
+    Encoder leftEncoder = new Encoder(RobotMap.LEFTENCODER_A, RobotMap.LEFTENCODER_B);
+    Encoder rightEncoder = new Encoder(RobotMap.RIGHTENCODER_A, RobotMap.RIGHTENCODER_B, true);
+    
     DoubleSolenoid driveLock = new DoubleSolenoid(RobotMap.DRIVELOCK_A, RobotMap.DRIVELOCK_B);
     
-    //Gyro gyro = new Gyro(RobotMap.GYRO);
+    Gyro gyro = new Gyro(RobotMap.GYRO);
     
     public Drivetrain()
     {
@@ -37,10 +40,13 @@ public class Drivetrain extends Subsystem {
         LiveWindow.addActuator("Drivetrain", "Right Drive 2", driveR2);
         LiveWindow.addActuator("Drivetrain", "Right Drive 3", driveR3);
         setLocked(false);
+        
+        leftEncoder.start();
+        rightEncoder.start();
     }
     
     protected void initDefaultCommand() {
-        setDefaultCommand(new JoystickDrive());
+        setDefaultCommand(new CheesyDrive());
     }
     
     public void set(double left, double right)
@@ -74,12 +80,24 @@ public class Drivetrain extends Subsystem {
     
     public double getAngle()
     {
-        return 0;
+        return gyro.getAngle();
+    }
+    
+    public double getDistance()
+    {
+        return leftEncoder.getDistance();
+        //return (leftEncoder.getDistance()+rightEncoder.getDistance())/2;
+    }
+    
+    public void resetDistance()
+    {
+        leftEncoder.reset();
+        rightEncoder.reset();
     }
     
     public void resetAngle()
     {
-        //gyro.reset();
+        gyro.reset();
     }
     
 }

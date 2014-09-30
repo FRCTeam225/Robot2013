@@ -12,19 +12,23 @@ public class RobotMap {
     public static int LEFTDRIVE1 = 1;
     public static int LEFTDRIVE2 = 2;
     public static int LEFTDRIVE3 = 3;
+    public static int LEFTENCODER_A = 4;
+    public static int LEFTENCODER_B = 5;
+    
     
     public static int RIGHTDRIVE1 = 4;
     public static int RIGHTDRIVE2 = 5;
     public static int RIGHTDRIVE3 = 6;
+    public static int RIGHTENCODER_A = 6;
+    public static int RIGHTENCODER_B = 7;
     
     public static int SHOOTERWHEEL = 8;
     public static int SHOOTERTURRET = 7;
     public static int SHOOTERFEED = 9;
     
     public static int HANGWINCH = 10;
-    public static int WINCHLIMIT = 4;
     
-    public static int TURRET_POT = 1;
+    public static int TURRET_POT = 3;
     
     public static int PRESSURE_SWITCH = 1;
     public static int SHOOTERSPEEDSENSOR = 2;
@@ -40,5 +44,7 @@ public class RobotMap {
     public static int COMPRESSOR = 3;
     
     public static int GYRO = 2;
+    
+    public static int LEDCONTROL = 13;
     
 }

@@ -16,42 +16,43 @@ import edu.wpi.first.wpilibj.DriverStationEnhancedIO.EnhancedIOException;
  * Thus the name WrenBox.
  */
 public class WrenBox {
-    public static DriverStationEnhancedIO getDSIO()
+    /*public static DriverStationEnhancedIO getDSIO()
     {
         return DriverStation.getInstance().getEnhancedIO();
-    }
+    }*/
     
     public static boolean shooterEnabled()
     {
-        try {
+        return true;
+        /*try {
             return getDSIO().getDigital(1);
         } catch (Exception ex) {
         }
-        return true;
+        return true;*/
     }
 
     public static void setLEDs(boolean state)
     {
-        try {
+        /*try {
             getDSIO().setLEDs(state?(byte)0xff:(byte)0);
         } catch (EnhancedIOException ex) {
-        }
+        }*/
     }
     
     public static void setShooterReadyLED(boolean state)
     {
-        try {
+        /*try {
             getDSIO().setDigitalOutput(4, state);
         } catch (EnhancedIOException ex) {
-        }
+        }*/
     }
     
     public static void setTurretLockedLED(boolean state)
     {
-        try {
+        /*try {
             getDSIO().setDigitalOutput(5, state);
         } catch (EnhancedIOException ex) {
-        }
+        }*/
     }
     
     

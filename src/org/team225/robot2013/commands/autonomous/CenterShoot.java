@@ -23,10 +23,10 @@ import org.team225.robot2013.commands.shooter.WaitForTurret;
 public class CenterShoot extends CommandGroup {
     public CenterShoot()
     {
-        addSequential(new SetFlywheel(0.0145, 0.05));
+        addSequential(new SetFlywheel(0.017099, 0.05));
         addSequential(new SetAngle(true));
-        addSequential(new SetTurret(699));
-        addParallel(new HoldTurretAtSetpoint(699));
+        addSequential(new SetTurret(570));
+        addParallel(new HoldTurretAtSetpoint(570));
         addSequential(new WaitForTurret());
         
         addSequential(new LEDSet(LEDSet.GREEN));

@@ -27,14 +27,14 @@ public class CypressButton extends Button {
     
     
     public boolean get() {
-        try {
+  /*      try {
             boolean state = WrenBox.getDSIO().getDigital(pin);
             if ( inverted )
                 return !state;
             return state;
         } catch (EnhancedIOException ex) {
             ex.printStackTrace();
-        }
+        }*/
         return false;
     }
     

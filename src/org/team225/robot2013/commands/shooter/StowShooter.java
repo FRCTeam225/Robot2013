@@ -15,7 +15,7 @@ public class StowShooter extends CommandGroup {
     {
         addSequential(new SetAngle(false));
         addSequential(new SetFlywheel(Double.POSITIVE_INFINITY));
-        addSequential(new HoldTurretAtSetpoint(925));
+        addSequential(new HoldTurretAtSetpoint(202));
         
     }
 }

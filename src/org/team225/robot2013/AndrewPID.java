@@ -16,7 +16,7 @@ public class AndrewPID {
     double errSum = 0;
     double maxInc = 0.01;
     double previousValue = 0;
-    
+    boolean targetChangedBeforeCalculate = true;
     double maxOutput=1, minOutput=-1;
     public AndrewPID(double kP, double kI, double kD)
     {
@@ -63,16 +63,22 @@ public class AndrewPID {
     
     public double getError()
     {
+        if ( targetChangedBeforeCalculate )
+            return Integer.MAX_VALUE;
         return error;
     }
     
     public void setTarget(double target)
     {
+        targetChangedBeforeCalculate = true;
         this.target = target;
     }
     
     public double calculate(double input)
     {
+        if ( targetChangedBeforeCalculate )
+            targetChangedBeforeCalculate = false;
+        
         // P
         error = target-input;
         

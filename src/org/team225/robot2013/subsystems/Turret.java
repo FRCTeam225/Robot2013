@@ -24,9 +24,10 @@ public class Turret extends Subsystem {
     
     Victor turretMotor = new Victor(RobotMap.SHOOTERTURRET);
     public AnalogChannel turretPot = new AnalogChannel(RobotMap.TURRET_POT);
-    public static int TURRETOFFSET = -377; // Offset setpoints because of pot readjustment
+    public static int TURRETOFFSET = 0; // Offset setpoints because of pot readjustment
+    
     public boolean runPID = false;
-    AndrewPID turretPID = new AndrewPID(0.0045, 0.003, 0.01);
+    AndrewPID turretPID = new AndrewPID(-0.01, 0, 0);
     
     Relay shooterUp = new Relay(RobotMap.TURRETANGLE_A);
     Relay shooterDown = new Relay(RobotMap.TURRETANGLE_B);
@@ -53,6 +54,12 @@ public class Turret extends Subsystem {
     {
         setpoint += Turret.TURRETOFFSET;
         runPID = true;
+        
+       /* if ( setpoint > TURRET_HIGHLIMIT )
+            setpoint = TURRET_HIGHLIMIT;
+        else if ( setpoint < TURRET_LOWLIMIT )
+            setpoint = TURRET_LOWLIMIT;*/
+        
         turretPID.setTarget(setpoint);
     }
     
@@ -87,8 +94,11 @@ public class Turret extends Subsystem {
     public void updatePID()
     {
         if(runPID)
+        {
             turretMotor.set(turretPID.calculate(turretPot.getAverageValue()));
-        System.out.println(turretPID.getError());
+            turretPID.calculate(turretPot.getAverageValue());
+        }
+       // System.out.println(turretPID.getError());
     }
    
     protected void initDefaultCommand() {
